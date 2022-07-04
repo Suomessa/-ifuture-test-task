@@ -4,9 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 mvnw
-mvnv.cmd
 ServerSide.iml
 .mvn
+mvnw.cmd
 
 ### STS ###
 .apt_generated
