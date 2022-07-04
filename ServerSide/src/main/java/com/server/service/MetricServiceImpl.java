@@ -20,8 +20,18 @@ public class MetricServiceImpl implements MetricService {
     }
 
     @Override
-    public Integer getData() {
+    public void addCounterToAllCount(Integer count) {
+        allCount += count;
+    }
+
+    @Override
+    public Integer getCounter() {
         return counter.get();
+    }
+
+    @Override
+    public Integer getAllCount() {
+        return allCount;
     }
 
     @Override
@@ -30,10 +40,11 @@ public class MetricServiceImpl implements MetricService {
         allCount = 0;
     }
 
+    @Override
     @Scheduled(fixedDelay = 1000)
     public void sendInformationInLogs() {
         Integer result = counter.getAndSet(0);
-        allCount+=result;
+        addCounterToAllCount(result);
         log.info(result + " requests per second; Total count: " + allCount);
     }
 }
